@@ -89,7 +89,24 @@ monogatari.characters ({
         sprites: {
             normal: 'Yuno.png'
         }
-	}
+	},
+
+	'm': {
+        name: 'Minoru',
+        color: '#00bfff', 
+        sprites: {
+            normal: 'Minoru.png'
+        }
+	},
+	'k': {
+        name: 'Minoru',
+        color: '#00bfff', 
+        sprites: {
+            normal: 'kira.jpg'
+        }
+	},
+
+
 	
 });
 
@@ -98,7 +115,7 @@ monogatari.script ({
 	'Start': [
 		'show scene #f7f6f6 with fadeIn',
 		'show notification Welcome',
-		'show image ./Yuno.png center with fadeIn',
+		'show image ./Minoru.png center with fadeIn',
 		{
 			'Input': {
 				'Text': 'Qual o seu nome?',
@@ -125,7 +142,7 @@ monogatari.script ({
 
 		},
 		{'Input': {
-			'Text': 'Gostaria de falar comigo, meu amor?',
+			'Text': 'Está pronto para jogar?',
 			'Validation': (input) => {
 				return input.trim ().length > 0;
 			},
@@ -138,16 +155,20 @@ monogatari.script ({
 			'Warning': 'Digite algo para mim!'
 		}},
 
-		'y Oi {{player.name}} Meu amor! Dormiu bem ? Espero que sim! Seu dia vai ser bem divertido comigo ',
+		'm Olá {{player.name}} seja bem vindo a Death Note - Rise of a New God. Eu sou Minoru Tanaka um dos dententores do Death Note',
+		'm Nesse jogo você tem a possibilidade de tomar duas ações: Seguir a história original do One Shot The A-Kira Story',
+		'm ou...',
+		'show image ./kira.png left with fadeIn',
+		'k JUNTOS PODEMOS TORNAR O SONHO DO KIRA POSSÍVEL',
 		{
 			'Choice': {
-				'Dialog': 'y Você já escovou seus dentes querido?',
+				'Dialog': 'm E então? Qual é sua decisão?',
 				'Yes': {
-					'Text': 'Sim',
+					'Text': 'The A Kira - Original Story',
 					'Do': 'jump Yes'
 				},
 				'No': {
-					'Text': 'Não',
+					'Text': 'Death Note - Rise of a New God',
 					'Do': 'jump No'
 				}
 				
@@ -156,23 +177,23 @@ monogatari.script ({
 	],
 
 	'Yes': [
-		'y Que legal meu amor!',
-		'y Eu gosto muito de falar com você todos os dias!',
-		'y Acho que você precisa ir para o trabalho agora né ?',
-		'y Seria muito legal se eu pudesse ir com você!!',
-		'y Eu sempre vou estar aqui meu amor, todos os dias. Em todo lugar, mas eu preciso saber onde você está meu amor',
+		'm Que legal meu amor!',
+		'm Eu gosto muito de falar com você todos os dias!',
+		'm Acho que você precisa ir para o trabalho agora né ?',
+		'm Seria muito legal se eu pudesse ir com você!!',
+		'm Eu sempre vou estar aqui meu amor, todos os dias. Em todo lugar, mas eu preciso saber onde você está meu amor',
 
 		'end'
 	],
 
 	'No': [
 
-		'y Você tem que escovar seu dentes, amor. Eu me importo bastante com sua saúde bucal',
+		'm Você tem que escovar seu dentes, amor. Eu me importo bastante com sua saúde bucal',
 
 		'show message Help',
 
-		'y Te amo tá ?!',
-		'y Se cuida quando for para o trabalho!',
+		'm Te amo tá ?!',
+		'm Se cuida quando for para o trabalho!',
 		'end'
 	]
 });
