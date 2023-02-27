@@ -2,7 +2,7 @@
 
 Um jogo que desenvolvi usando uma engine de jogos de Browser chamada Monogatari que é utilizada para construção de jogos do estilo Novel Games. A engine tem como base a linguagem de programação Javascript e é altamente personalizada para construção de diálogos e interação com os personagens
 
-<img src = "https://w7.pngwing.com/pngs/536/469/png-transparent-light-yagami-near-death-note-film-others-television-angle-white-thumbnail.png">
+<img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Death_Note_logo.jpg/1200px-Death_Note_logo.jpg">
 
 ## Personagem Principal
 Yuno Gasai é uma personagem fictícia do mangá e anime "Mirai Nikki" (ou "Future Diary", em inglês), criado por Sakae Esuno. Ela é uma das personagens principais da história e é conhecida por sua personalidade complexa e intensa.
