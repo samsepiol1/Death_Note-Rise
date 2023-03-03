@@ -1,5 +1,6 @@
 /* global monogatari */
 
+/* imports monogatari */
 
 
 
@@ -12,7 +13,7 @@ monogatari.action ('message').messages ({
 		body: `
 			<p><a href='https://developers.monogatari.io/documentation/'>Documentation</a> - Everything you need to know.</p>
 			<p><a href='https://monogatari.io/demo/'>Demo</a> - A simple Demo.</p>
-			<p><a>Info about the characters</p>
+			<p><a href=''>Info about the characters</p>
 			
 		`
 	}
@@ -28,8 +29,117 @@ monogatari.action ('notification').notifications ({
 });
 
 // Define the Particles JS Configurations used in the game
-monogatari.action ('particles').particles ({
-
+monogatari.action('particles').particles({
+	'snow': {
+		'particles': {
+			'number': {
+				'value': 400,
+				'density': {
+					'enable': true,
+					'value_area': 800
+				}
+			},
+			'color': {
+				'value': '#fff'
+			},
+			'shape': {
+				'type': 'circle',
+				'stroke': {
+					'width': 0,
+					'color': '#000000'
+				},
+				'polygon': {
+					'nb_sides': 5
+				},
+				'image': {
+					'src': 'img\/github.svg',
+					'width': 100,
+					'height': 100
+				}
+			},
+			'opacity': {
+				'value': 0.5,
+				'random': true,
+				'anim': {
+					'enable': false,
+					'speed': 1,
+					'opacity_min': 0.1,
+					'sync': false
+				}
+			},
+			'size': {
+				'value': 10,
+				'random': true,
+				'anim': {
+					'enable': false,
+					'speed': 40,
+					'size_min': 0.1,
+					'sync': false
+				}
+			},
+			'line_linked': {
+				'enable': false,
+				'distance': 500,
+				'color': '#ffffff',
+				'opacity': 0.4,
+				'width': 2
+			},
+			'move': {
+				'enable': true,
+				'speed': 6,
+				'direction': 'bottom',
+				'random': false,
+				'straight': false,
+				'out_mode': 'out',
+				'bounce': false,
+				'attract': {
+					'enable': false,
+					'rotateX': 600,
+					'rotateY': 1200
+				}
+			}
+		},
+		'interactivity': {
+			'detect_on': 'canvas',
+			'events': {
+				'onhover': {
+					'enable': true,
+					'mode': 'bubble'
+				},
+				'onclick': {
+					'enable': true,
+					'mode': 'repulse'
+				},
+				'resize': true
+			},
+			'modes': {
+				'grab': {
+					'distance': 400,
+					'line_linked': {
+						'opacity': 0.5
+					}
+				},
+				'bubble': {
+					'distance': 400,
+					'size': 4,
+					'duration': 0.3,
+					'opacity': 1,
+					'speed': 3
+				},
+				'repulse': {
+					'distance': 200,
+					'duration': 0.4
+				},
+				'push': {
+					'particles_nb': 4
+				},
+				'remove': {
+					'particles_nb': 2
+				}
+			}
+		},
+		'retina_detect': true
+	}
 });
 
 // Define the canvas objects used in the game
@@ -39,6 +149,19 @@ monogatari.action ('canvas').objects ({
 
 // Credits of the people involved in the creation of this awesome game
 monogatari.configuration ('credits', {
+	"Developers": {
+		"Scenario Writer": "Lucas Matheus",
+		"Developer": "Lucas Matheus",
+		"Writer": "Lucas Matheus"
+	},
+
+	"Special Thanks to": {
+		"My parents": ["Mom", "Dad"], 
+		"My siblings": ["Brother"],
+		"Creators of Death Note": ["Tsugumi Ohba", "Takeshi Obata"]
+	}
+
+	
 
 });
 
@@ -83,13 +206,6 @@ monogatari.assets ('scenes', {
 
 // Define the Characters
 monogatari.characters ({
-	'y': {
-        name: 'Yuno',
-        color: '#00bfff', 
-        sprites: {
-            normal: 'Yuno.png'
-        }
-	},
 
 	'm': {
         name: 'Minoru',
@@ -112,48 +228,36 @@ monogatari.characters ({
 
 monogatari.script ({
 	// The game starts here.
+
+	"Introduction": [
+		
+	],
 	'Start': [
+		"Loading...",
+		"clear",
+		{"Input": {
+			"Text": "Qual o seu nome?",
+			"Validation": function (input) {
+				return input.trim().length > 0;
+			},
+			"Save": function (input) {
+				Storage.set ("PlayerName", input);
+				storage.player.name = input;
+				return true;
+			},
+			"Warning": "You must enter a name!"
+		}},
+
+		"centered All humans will, without exception, eventually die.",
+		"centered  After they die, the place they go is MU. (Nothingness)",
+		"centered Once dead, they can never come back to life.",
+		"e There weren't many at first but little by little, more and more came...",
 		'show scene #f7f6f6 with fadeIn',
 		'show notification Welcome',
 		'show image ./Minoru.png center with fadeIn',
-		{
-			'Input': {
-				'Text': 'Qual o seu nome?',
-				'Validation': function (input) {
-					return input.trim ().length > 0;
-				},
-				'Save': function (input) {
-					this.storage ({
-						player: {
-							name: input
-						}
-					});
-					return true;
-				},
-				'Revert': function () {
-					this.storage ({
-						player: {
-							name: ''
-						}
-					});
-				},
-				'Warning': 'Você precisa Colocar um nome!'
-			},
+		
 
-		},
-		{'Input': {
-			'Text': 'Está pronto para jogar?',
-			'Validation': (input) => {
-				return input.trim ().length > 0;
-			},
-			'Save': (input) => {
-				monogatari.storage ({ acao: { talk: input }});
-			},
-			'Revert': () => {
-				monogatari.storage ({ acao: { talk: '' }});
-			},
-			'Warning': 'Digite algo para mim!'
-		}},
+		//Input de Teste
 
 		'm Olá {{player.name}} seja bem vindo a Death Note - Rise of a New God. Eu sou Minoru Tanaka um dos dententores do Death Note',
 		'm Nesse jogo você tem a possibilidade de tomar duas ações: Seguir a história original do One Shot The A-Kira Story',
@@ -177,23 +281,23 @@ monogatari.script ({
 	],
 
 	'Yes': [
-		'm Que legal meu amor!',
-		'm Eu gosto muito de falar com você todos os dias!',
-		'm Acho que você precisa ir para o trabalho agora né ?',
-		'm Seria muito legal se eu pudesse ir com você!!',
-		'm Eu sempre vou estar aqui meu amor, todos os dias. Em todo lugar, mas eu preciso saber onde você está meu amor',
+		'm ',
+		'm',
+		'm',
+		'm',
+		'm',
 
 		'end'
 	],
 
 	'No': [
 
-		'm Você tem que escovar seu dentes, amor. Eu me importo bastante com sua saúde bucal',
+		'm',
 
 		'show message Help',
 
-		'm Te amo tá ?!',
-		'm Se cuida quando for para o trabalho!',
+		'm',
+		'm',
 		'end'
 	]
 });
